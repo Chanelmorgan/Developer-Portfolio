@@ -2,16 +2,24 @@
     "builds": [
       {
         "src": "package.json",
-        "use": "@vercel/static-build",
-        "config": {
-          "distDir": "dist" // Ensure this matches your build output directory
-        }
+        "use": "@vercel/static-build"
       }
     ],
     "routes": [
       {
         "src": "/(.*)",
         "dest": "/index.html"
+      }
+    ],
+    "headers": [
+      {
+        "source": "/assets/(.*)",
+        "headers": [
+          {
+            "key": "Content-Type",
+            "value": "text/css"
+          }
+        ]
       }
     ]
   }
